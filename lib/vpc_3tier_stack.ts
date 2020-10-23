@@ -1,11 +1,14 @@
 import * as cdk from '@aws-cdk/core';
 import * as _ec2 from '@aws-cdk/aws-ec2';
+import { Vpc } from '@aws-cdk/aws-ec2';
 
 export class Vpc3TierStack extends cdk.Stack {
+    vpc: Vpc
+    
     constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        const vpc = new _ec2.Vpc(
+        this.vpc = new _ec2.Vpc(
             this,
             "websiteVpc",
             {
@@ -35,7 +38,7 @@ export class Vpc3TierStack extends cdk.Stack {
         new cdk.CfnOutput(this, 
             "webAppVpc",
             {
-                value: vpc.vpcId,
+                value: this.vpc.vpcId,
                 exportName: "VpcID"
             }
             )
