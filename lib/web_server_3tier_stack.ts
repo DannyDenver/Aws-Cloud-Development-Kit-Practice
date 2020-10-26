@@ -4,7 +4,7 @@ import * as _elb from '@aws-cdk/aws-elasticloadbalancingv2';
 import * as _iam from '@aws-cdk/aws-iam';
 import * as _autoscaling from '@aws-cdk/aws-autoscaling';
 
-import { Vpc, InstanceType, SubnetType } from '@aws-cdk/aws-ec2';
+import { Vpc, SubnetType } from '@aws-cdk/aws-ec2';
 var fs = require('fs');
 
 
@@ -16,6 +16,7 @@ export class WebServer3TierStack extends cdk.Stack {
 
         try {
             var data = fs.readFileSync('user_data/deploy_app.sh', 'utf8');
+            console.log(data);
         } catch(e) {
             console.log('Error:', e.stack);
         }
